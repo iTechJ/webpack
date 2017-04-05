@@ -1,39 +1,33 @@
 ## Webpack and ES6 Tutorial
 
-Next branch after **hmr-linting**: [hmr-linting](https://github.com/iTechJ/webpack/tree/multi-config)  
+Next branch after **multi-config**: [plugins](https://github.com/iTechJ/webpack/tree/plugins)  
 This tutorial is based on http://ccoenraets.github.io/es6-tutorial  
 
-**hmr_linting** branch contains examples of how to configure Webpack Dev Server, Hot Module Reloading and ESLint for Webpack
+**multi-config** branch contains examples of how to split configuration for different environments
 
 ### NPM dependencites:
 ```javascript
-npm install webpack-dev-server --save-dev
-npm install eslint --save-dev
-npm install eslint-loader --save-dev
-npm install eslint-plugin-react --save-dev
-npm install babel-eslint --save-dev
+npm install lodash --save-dev //Used to merge parts of configuration
+npm install minimist --save-dev //Used to parse command-line params passed to webpack
 ```
 
-###Webpack Dev server and Hot module reloading
-WDS is a development server running in-memory, meaning the bundle contents aren't written out to files, but stored in memory. This is an important distinction when trying to debug code and styles.
+### Composing Configuration
+In this example we are going to split monolithic webpack.config.js into several environment-specific config files.
 
-By default WDS refreshes content automatically in the browser while you develop your application so you don't have to do it yourself. However it also supports an advanced webpack feature, Hot Module Replacement (HMR).
+#### webpack.base.js
+ It contains configuration, common for all types of builds.
+ It's *output* directory and webpack *loaders*
+ Now it can be called as *npm run serve * (check out "scripts" in package.json)
 
-HMR allows patching the browser state without a full refresh making it particularly handy with libraries like React where a refresh blows away the application state.
+#### webpack.development.js
+ It contains configuration, used by webpack dev server and dev builds.
+ It contains dev-specific *entry*, *plugins*  used during development, dev-specific *devtool* and *dev server* configuration
+ Also, it adds another *loader* to configuration - ESLint-Loader
 
-Now it can be called as *npm run serve * (check out "scripts" in package.json)
+#### webpack.production.js
+ It contains configuration, used for production builds.
+ It contains prod-specific *entry*, *plugins* which should be applied to production builds and prod-specific *devtool*
+ This config won't use eslint-loader
 
-### Linting
-Linting is one of those techniques that can help you make fewer mistakes while coding JavaScript.
-You can spot issues before they become actual problems.
-Modern editors and IDEs offer strong support for popular tools allowing you to detect possible issues as you are developing.
-
-Despite this, it's a good idea to set them up with webpack or at least in a separate task that gets run regularly.
-That allows you to cancel a production build that is not up to your standards.
-
-We are going to use * [ESLint](http://eslint.org/) * for linting
-npm install eslint --save-dev
-npm install eslint-loader --save-dev
-
-In this tutorial are are using only some rules - check out *.eslintrc.js*
-List of all avalable ESLint rules can be found [here](http://eslint.org/docs/rules/).
+#### webpack.config.js
+  Responsibility of webpack.config.js is to build valid config based on *env* cli-param using fragments, specified by webpack.[env].js
