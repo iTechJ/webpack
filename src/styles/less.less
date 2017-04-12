@@ -1,0 +1,37 @@
+
+@baseColor: #0288D1;
+@orangeColor : #EF6C00;
+@header-background : '../images/header-background.png';
+
+h2 > .currency {
+    color: @baseColor;
+}
+
+h3 > span {
+    color: @baseColor;
+}
+
+.principal {
+    color: @baseColor;
+}
+
+.interest {
+    color: @orangeColor;
+}
+
+.bar.principal {
+    background-color: @baseColor;
+    margin-right:1px;
+}
+
+.bar.interest {
+    background-color: @orangeColor;
+    margin-left:1px;
+}
+
+header {
+    background-image: url(@header-background); //It also could be processed by loader
+    background-repeat: repeat;
+    padding: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
