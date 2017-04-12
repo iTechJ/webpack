@@ -3,7 +3,6 @@ import CalculatorImageSrc from '../../images/calculator.png'; // You can check, 
 export default function (labelText) {
   const header = document.createElement('header');
 
-
   const label = document.createElement('h1');
   label.setAttribute('class', 'text-center');
   label.innerHTML = labelText;

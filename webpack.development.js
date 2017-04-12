@@ -22,7 +22,15 @@ const config = _.merge({
     publicPath: '/assets/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.ProvidePlugin({ // Automatically loads appropriate module of left-hand identifiers found in the code
+      $: 'jquery',
+      jQuery: 'jquery'
+    }),
+    new webpack.LoaderOptionsPlugin({ /* It could be used when there are comparability issue with previous version of Webpack*/
+      debug: true
+    }),
+    new webpack.HotModuleReplacementPlugin(), //You're already familiar with this plugin - it enables Hot Module Reloading feature
+    new webpack.NoEmitOnErrorsPlugin() //stops the build if there is an error
   ]
 }, baseConfig);
 

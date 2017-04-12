@@ -1,33 +1,27 @@
-## Webpack and ES6 Tutorial
-
-Next branch after **multi-config**: [plugins](https://github.com/iTechJ/webpack/tree/plugins)  
+## Webpack and ES6 Tutorial  
+This is the last branch of Webpack 4 tutorial
 This tutorial is based on http://ccoenraets.github.io/es6-tutorial  
 
-**multi-config** branch contains examples of how to split configuration for different environments
+Branch contains examples of using Webpack plugins
 
 ### NPM dependencites:
 ```javascript
-npm install lodash --save-dev //Used to merge parts of configuration
-npm install minimist --save-dev //Used to parse command-line params passed to webpack
+npm install optimize-css-assets-webpack-plugin cssnano --save-dev
+npm install moment --save-dev
+npm install uglifyjs-webpack-plugin --save-dev
 ```
 
-### Composing Configuration
-In this example we are going to split monolithic webpack.config.js into several environment-specific config files.
+### Webpack plugins in Action
+In this example we are going to review useful plugins, provided by Webpack
 
-#### webpack.base.js
- It contains configuration, common for all types of builds.
- It's *output* directory and webpack *loaders*
- Now it can be called as *npm run serve * (check out "scripts" in package.json)
+*Be sure to check out comments in  webpack.production.js and webpack.development.js*
 
-#### webpack.development.js
- It contains configuration, used by webpack dev server and dev builds.
- It contains dev-specific *entry*, *plugins*  used during development, dev-specific *devtool* and *dev server* configuration
- Also, it adds another *loader* to configuration - ESLint-Loader
+Additional information:
+https://webpack.js.org/concepts/plugins/
 
-#### webpack.production.js
- It contains configuration, used for production builds.
- It contains prod-specific *entry*, *plugins* which should be applied to production builds and prod-specific *devtool*
- This config won't use eslint-loader
+#### Plugins often used for development builds
+ Please review "plugins" property in webpack.development.js
 
-#### webpack.config.js
-  Responsibility of webpack.config.js is to build valid config based on *env* cli-param using fragments, specified by webpack.[env].js
+#### Plugins often used for production builds
+ Please review "plugins" property in webpack.production.js
+ You can also install source-map-explorer and check results of *source-map-explorer bundle.js bundle.js.map* with and without IgnorePlugin
