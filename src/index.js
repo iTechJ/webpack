@@ -1,4 +1,3 @@
-import '../css/styles.css'
 
 var calculateMonthlyPayment = function (principal, years, rate) {
     let monthlyRate = 1;
