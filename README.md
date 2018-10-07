@@ -1,5 +1,6 @@
 ## Webpack and ES6 Tutorial
-Start the tutorial from master branch
+Start the tutorial from master branch.
+Next branch after master - non-default-config
 This tutorial is based on http://ccoenraets.github.io/es6-tutorial
 
 Master branch contains basic setup of Webpack 4
