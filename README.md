@@ -1,15 +1,17 @@
 ## Webpack and ES6 Tutorial
-This tutorial is based on http://ccoenraets.github.io/es6-tutorial
-Start the tutorial from master branch.
-Next branch after master : non-default-config.
+This tutorial is based on http://ccoenraets.github.io/es6-tutorial  
+Start the tutorial from **master** branch.  
+Next branch after master : [non-default-config](https://github.com/iTechJ/webpack/tree/non-default-config). 
 
-Master branch contains basic setup of Webpack 4
+**master** branch contains basic setup of Webpack 4
 
 ### NPM dependencites:
+```javascript
 npm install --save-dev webpack
 npm install --save-dev webpack-cli
 npm install @babel/cli @babel/core --save-dev
 npm install @babel/preset-env --save-dev
+```
 
 ### Default configuration:
 1) entry point - ./src/index.js
