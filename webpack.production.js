@@ -7,6 +7,7 @@ const config = _.merge({
   entry: [
     './src/index.js'
   ],
+  mode : 'production',
   cache: false,
   mode: 'production',
   devtool: 'source-map',

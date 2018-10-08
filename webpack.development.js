@@ -13,8 +13,8 @@ const config = _.merge({
 	'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:9000'
   ],
-  devtool: 'eval',
   mode : 'development',
+  devtool: 'eval',
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
     hot: true,

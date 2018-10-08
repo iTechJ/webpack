@@ -58,7 +58,7 @@ module.exports = {
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: {
-          loader: 'file-loader',
+          loader: 'file-loader', // This loader will output assets into build directory and change link to output file
           query: {
             name: '[path][name].[ext]'
           }
