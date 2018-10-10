@@ -1,10 +1,17 @@
 ## Webpack and ES6 Tutorial
+
+Next branch after **assets-loading**: [hmr-linting](https://github.com/iTechJ/webpack/tree/hrm-linting)  
 This tutorial is based on http://ccoenraets.github.io/es6-tutorial  
-Next branch after **non-default-config**: [assets-loading](https://github.com/iTechJ/webpack/tree/assets-loading)
+
+**assets-loading** branch contains examples of how to configure and use various module loaders, available for Webpack
 
 ### NPM dependencites:
 ```javascript
 npm install --save-dev less-loader less
+npm install babel-loader --save-dev
+npm install url-loader --save-dev
+npm install sass-loader node-sass webpack --save-dev
+npm install file-loader --save-dev
 ```
 
 ### Assets Loading
