@@ -1,26 +1,53 @@
 const path = require('path');
+const webpack = require('webpack');
+
+const port = 9000;
 
 module.exports = {
-  entry: './src/index.js',
+  watch: true,
+  entry: [
+    './src/index.js',
+	'webpack/hot/dev-server',
+    'webpack-dev-server/client?http://localhost:9000'
+  ],
+  devtool: 'eval',
   mode : 'development',
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, './dist/assets'),
+	publicPath: '/assets/'
   },
+  devServer: { //Webpack dev server configuration
+    contentBase: path.resolve(__dirname, './dist'),
+    hot: true, //Enables HMR
+    port: port,
+    publicPath: '/assets/'
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin() //Enables HMR
+  ],
   module: {
     rules: [
       {
         test: /\.(js)$/,
-        exclude: /node_modules/, //Normally, you shouldn't use Babel-loader for dependencies
+        exclude: /node_modules/, 
         use: [
-          'babel-loader' //This loader will convert ES6 to ES5 with babel,
+          'babel-loader'
         ]
       },
+	   {
+        test: /\.(js)$/,
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true
+        }
+	  },
       {
         test: /\.css$/,
-        use: [ // It means "Call css-loader first, then process it with style-loader. It's like style-loader(css-loader(asset))"
-          'style-loader', //Ships JS code, which will insert <style> elements into <head> with appropriate styles.
-          'css-loader' //Handles all url('') and @import the same way as ES6 'import' statement => Loads appropriate assets. Example - header background.
+        use: [
+          'style-loader', 
+          'css-loader' 
         ]
       },
       {
@@ -29,7 +56,7 @@ module.exports = {
       },
       {
         test: /\.(sass)/,
-        use: [// like style-loader(css-loader(sass-loader(asset)))
+        use: [
           {
             loader: "style-loader"
           },
@@ -42,22 +69,22 @@ module.exports = {
         ]
       },
       {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, //Font files are provided by Bootstrap
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
         use: {
-          loader: 'url-loader?limit=100000&mimetype=application/font-woff' //Query param here is the same as content of "options" field specified in next logging
+          loader: 'url-loader?limit=100000&mimetype=application/font-woff'
         }
       },
       {
         test: /\.(jpg|png|svg)$/,
-        loader: 'url-loader', //This loader will convert sources into data-urls. It may significantly increase size of the bundle, so always specify the limit
-        options: {
-          limit: 25000 //Use file-loader when size of asset is more then limit. You could reduce limit to see the changes in image loading
+        loader: 'url-loader',
+	    options: {
+          limit: 25000
         }
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
         use: {
-          loader: 'file-loader', // This loader will output assets into build directory and change link to output file
+          loader: 'file-loader',
           query: {
             name: '[path][name].[ext]'
           }

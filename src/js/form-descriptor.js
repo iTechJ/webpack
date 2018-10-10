@@ -6,7 +6,7 @@ export let config = {
   }, {
     id: 'years',
     label: 'Years',
-    value: 30
+    value: 301
   }, {
     id: 'rate',
     label: 'Rate',

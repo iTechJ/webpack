@@ -5,15 +5,20 @@
   "description": "Webpack Lesson",
   "scripts": {
     "copy": "copyfiles -f ./src/index.html ./dist",
-    "build": "npm run copy & webpack"
+    "build": "npm run copy & webpack",
+    "serve": "npm run copy & webpack-dev-server"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
+    "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
     "copyfiles": "^0.2.2",
     "css-loader": "^1.0.0",
+    "eslint": "^5.6.1",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-react": "^7.11.1",
     "file-loader": "^2.0.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
@@ -22,7 +27,8 @@
     "style-loader": "^0.23.0",
     "url-loader": "^1.1.1",
     "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
     "bootstrap": "^4.1.3"

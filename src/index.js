@@ -22,7 +22,7 @@ function handleCalculateButtonClick(resultWrapperId) {
       }
       return principal * monthlyRate / (1 - (Math.pow(1 / (1 + monthlyRate), years * 12)));
     }
-
+    console.log('We are here - Submit button click 1');
     const principal = document.getElementById('principal').value;
     const years = document.getElementById('years').value;
     const rate = document.getElementById('rate').value;
@@ -38,4 +38,9 @@ function initApplication() {
     appContainer.appendChild(AppHeader('Mortgage Calculator'));
     appContainer.appendChild(AppContent(config, behaviour));
   }
+}
+
+/*  This is a key for Hot module reloading */
+if (module.hot) {
+  module.hot.accept();
 }
