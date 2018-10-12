@@ -10,7 +10,7 @@ const config = _.merge({
   watch: true,
   entry: [
     './src/index.js',
-	'webpack/hot/dev-server',
+	  'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:9000'
   ],
   mode : 'development',
@@ -26,9 +26,6 @@ const config = _.merge({
       $: 'jquery',
       jQuery: 'jquery'
     }),
-    new webpack.LoaderOptionsPlugin({ /* It could be used when there are comparability issue with previous version of Webpack*/
-      debug: true
-    }),
     new webpack.HotModuleReplacementPlugin(), //You're already familiar with this plugin - it enables Hot Module Reloading feature
     new webpack.NoEmitOnErrorsPlugin() //stops the build if there is an error
   ]
@@ -38,6 +35,7 @@ config.module.rules.push({
   test: /\.(js)$/,
   enforce: 'pre',
   loader: 'eslint-loader',
+  exclude: /node_modules/,
   options: {
     emitWarning: true
   }
